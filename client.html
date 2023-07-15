@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORS, Rate Limiting and Storage Types</title>
+</head>
+<body>
+    <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username"><br>
+        <button onclick="storeUsername()">Save Username</button>
+      </div>
+    
+      <div>
+        <button onclick="retrieveUsername()">Retrieve Username</button>
+      </div>
+
+      <div>
+        <button onclick="removeUsername()">Remove Username</button>
+      </div>
+    
+      <div>
+        <button onclick="clearLocalStorage()">Clear localStorage</button>
+      </div>
+    
+
+      <div style="margin-top: 10px;">
+        <button onclick="makeCORSRequest()">Make CORS Request</button>
+      </div>
+    
+    <script src="client.js"></script>
+</body>
+</html>
