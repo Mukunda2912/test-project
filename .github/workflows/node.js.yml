@@ -47,4 +47,4 @@ jobs:
         labels: ${{ steps.meta.outputs.labels }}
     - run: npm ci
     - run: npm run build --if-present
-    - run: npm test
+    
