@@ -8,10 +8,11 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+    types: [opened, synchronize, reopened]
 
 jobs:
-  build:
-
+  sonarcloud:
+    name: SonarCloud
     runs-on: ubuntu-latest
 
     strategy:
@@ -21,24 +22,31 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+      with:
+          fetch-depth: 0 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - uses: mr-smithers-excellent/docker-build-push@v6
-      with:
-        image: mukunda2912/my-project
-        registry: docker.io
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+    - name: SonarCloud Scan
+      uses: SonarSource/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         
-    - name: Run Docker Image
-    - run: docker run -p 127.0.0.1:3000:3000 mukunda2912/newapp
+#     - uses: mr-smithers-excellent/docker-build-push@v6
+#       with:
+#         image: mukunda2912/my-project
+#         registry: docker.io
+#         username: ${{ secrets.DOCKER_USERNAME }}
+#         password: ${{ secrets.DOCKER_PASSWORD }}
+        
+#     - name: Run Docker Image
+#     - run: docker run -p 127.0.0.1:3000:3000 mukunda2912/newapp
     
-    - name: Test Docker Image
-    - run: docker ps
+#     - name: Test Docker Image
+#     - run: docker ps
     
-    - run: npm ci
-    - run: npm run build --if-present
+#     - run: npm ci
+#     - run: npm run build --if-present
     
