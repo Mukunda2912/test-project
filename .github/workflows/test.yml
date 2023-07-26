@@ -46,9 +46,9 @@ jobs:
     - name: Create/Update Log File
       run: |
         ENTRY_NUMBER=$(git rev-list --count HEAD)
-        DATE_TIME=$(date)
+        DATE_TIME=$(TZ=Asia/Kolkata date) 
         BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
-        LOG_ENTRY="Entry: $ENTRY_NUMBER | Date: $DATE_TIME | Branch: $BRANCH_NAME | Workflow run at $DATE_TIME"
+        LOG_ENTRY="Entry: $ENTRY_NUMBER | Date: $DATE_TIME | Branch: $BRANCH_NAME"
         echo "$LOG_ENTRY" >> logs.txt
         
     - name: Commit and Push Changes
