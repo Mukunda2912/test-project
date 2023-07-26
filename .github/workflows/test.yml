@@ -34,11 +34,24 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         
+    - name: "Set current date as env variable"
+      run: |
+          echo "builddate=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+      id: version  # this is used on variable path
+
+    - name: Publishing Release
+      uses: softprops/action-gh-release@v1
+      with:
+          tag_name: ${{ steps.version.outputs.builddate }}
+          name: ${{ steps.version.outputs.builddate }}
+          body: "your date"
+
     - name: print date
       run: |
           echo $DEBUG
       env:
-          DEBUG: ${{ steps.version.outputs.builddate }}-DEBUG
+          DEBUG: ${{ steps.version.outputs.builddate }}
+          RELEASE: ${{  steps.version.outputs.builddate }}
         
 #     - uses: mr-smithers-excellent/docker-build-push@v6
 #       with:
