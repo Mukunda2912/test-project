@@ -44,14 +44,13 @@ jobs:
       with:
           tag_name: ${{ steps.version.outputs.builddate }}
           name: ${{ steps.version.outputs.builddate }}
-          body: "your date"
+
 
     - name: print date
       run: |
           echo $DEBUG
       env:
           DEBUG: ${{ steps.version.outputs.builddate }}
-          RELEASE: ${{  steps.version.outputs.builddate }}
         
 #     - uses: mr-smithers-excellent/docker-build-push@v6
 #       with:
