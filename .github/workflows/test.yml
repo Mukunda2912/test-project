@@ -34,15 +34,11 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         
-    - name: Get current date
-      id: date
+    - name: print date
       run: |
-          echo "{date}={$(date +'%Y-%m-%d')}" >> $GITHUB_STATE
-    - name: Test with environment variables
-      run: echo $TAG_NAME - $RELEASE_NAME
+          echo $DEBUG
       env:
-          TAG_NAME: nightly-tag-${{ env.date }}
-          RELEASE_NAME: nightly-release-${{ env.date }}
+          DEBUG: ${{ steps.version.outputs.builddate }}-DEBUG
         
 #     - uses: mr-smithers-excellent/docker-build-push@v6
 #       with:
