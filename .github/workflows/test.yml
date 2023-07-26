@@ -56,8 +56,7 @@ jobs:
         git config --local user.name "GitHub Action"
         git add .github/workflows/logs.txt
         git commit -m "Update log file"
-        git push
-
+        git push --set-upstream origin ${{ github.ref }}
         
 #     - uses: mr-smithers-excellent/docker-build-push@v6
 #       with:
