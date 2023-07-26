@@ -36,10 +36,10 @@ jobs:
         
     - name: "Set current date as env variable"
       run: |
-          echo "builddate=$(date +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_ENV
+          echo "builddate=$(TZ=Asia/Kolkata date +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_ENV
       id: version  # this is used on variable path
 
-    - name: print date
+    - name: print date and time
       run: |
           echo $DEBUG
       env:
