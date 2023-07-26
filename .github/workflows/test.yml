@@ -45,7 +45,7 @@ jobs:
         echo "Current date and time: $(TZ=Asia/Kolkata date +'%Y-%m-%d %H:%M:%S')"
     - name: Create/Update Log File
       run: |
-        ENTRY_NUMBER=$(git rev-list --count main..HEAD)
+        ENTRY_NUMBER=$(git rev-list --count HEAD)
         DATE_TIME=$(TZ=Asia/Kolkata date) 
         BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
         LOG_ENTRY="Entry: $ENTRY_NUMBER | Date: $DATE_TIME | Branch: $BRANCH_NAME"
