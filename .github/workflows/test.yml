@@ -41,9 +41,8 @@ jobs:
 
     - name: print date and time
       run: |
-          echo $DEBUG
-      env:
-          DEBUG: ${{ steps.version.outputs.builddate }}
+        echo "Current date and time: $(TZ=Asia/Kolkata date +'%Y-%m-%d %H:%M:%S')"
+
         
 #     - uses: mr-smithers-excellent/docker-build-push@v6
 #       with:
