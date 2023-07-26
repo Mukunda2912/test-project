@@ -54,7 +54,7 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add .github/workflows/workflow_log.txt
+        git add .github/workflows/logs.txt
         git commit -m "Update log file"
         git push
 
