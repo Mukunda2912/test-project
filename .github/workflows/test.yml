@@ -50,13 +50,18 @@ jobs:
         LOG_ENTRY="Entry: $ENTRY_NUMBER | Date: $DATE_TIME | Branch: $BRANCH_NAME | Workflow run at $DATE_TIME"
         echo "$LOG_ENTRY" >> .github/workflows/logs.txt
         
-    - name: Commit and Push Changes
+    - name: Commit Changes
       run: |
+      
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add .github/workflows/logs.txt
         git commit -m "Update log file"
-        git push --set-upstream origin ${{ github.ref }} --quiet --no-verify --secret="ACCESS_TOKEN"
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref }}
         
 #     - uses: mr-smithers-excellent/docker-build-push@v6
 #       with:
